@@ -1,9 +1,18 @@
+Templates
+=========
+
 Howto access the database object in your templates:
 
-Mako Template:
+**Mako Template**
+
+::
+
     ${site.name}
     ${site.display}
     
-Jinja
+**Jinja**
+
+::
+
     {{ site.name }}
     {{ site.display }}

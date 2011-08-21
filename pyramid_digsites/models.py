@@ -13,6 +13,8 @@ DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
 class Site(Base):
+    """ table created: digsite_site
+    """
     __tablename__ = 'digsite_site'
 
     id = Column(types.BigInteger(), primary_key=True)

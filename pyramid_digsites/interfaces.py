@@ -5,7 +5,7 @@ class IPyramidDigsites(Interface):
     """ IPyramidDigsites Interface
     """
     pass
-    
+
 class PyramidDigsitesImplementation(object):
     """ IPyramidDigsites Interface
     """

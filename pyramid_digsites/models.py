@@ -16,16 +16,20 @@ class Site(Base):
     """ table created: digsite_site
     """
     __tablename__ = 'digsite_site'
+    __table_args__ = {"sqlite_autoincrement": True}
 
-    id = Column(types.BigInteger(), primary_key=True)
+    id = Column(types.Integer(), primary_key=True)
     name = Column('domain_name', Unicode(80), unique=True)
     display = Column('display_name', Unicode(80))
+
+    def __repr__(self):
+        return 'Site(domain=%r, display=%r)' % (self.name, self.display)
 
     @classmethod
     def get_current(cls, request=None):
         if not request:
             request = get_current_request()
-        
+
         return DBSession.query(cls).filter_by(name=unicode(request.host)).first()
 
 def initialize_sql(engine):

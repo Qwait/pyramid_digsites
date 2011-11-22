@@ -1,5 +1,7 @@
 from sqlalchemy import engine_from_config
 
+from pyramid.settings import asbool
+
 from pyramid_digsites.interfaces import IPyramidDigsites
 from pyramid_digsites.interfaces import PyramidDigsitesImplementation
 
@@ -11,5 +13,8 @@ def includeme(config):
     initialize_sql(engine_from_config(settings, 'sqlalchemy.'))
 
     config.registry.registerUtility(PyramidDigsitesImplementation, IPyramidDigsites)
-    
-    config.add_subscriber('pyramid_digsites.subscribers.add_renderer_globals', 'pyramid.events.BeforeRender')
+
+    use_subscriber = asbool(settings.get('digsite.use_subscriber', True))
+    if use_subscriber:
+        config.add_subscriber('pyramid_digsites.subscribers.add_renderer_globals', 
+        'pyramid.events.BeforeRender')
